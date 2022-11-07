@@ -19,6 +19,10 @@ for i in range(1,31):
     out = df.values.tolist()
     sql = "insert into Users(id,firstName,lastName,email,phone,username,password) values(%s, %s, %s, %s, %s, %s, %s)"
     val = (out[0][0],out[0][1],out[0][2],out[0][3],out[0][4],out[0][5],out[0][6])
-    mycursor.execute(sql,val)
-    mydb.commit()
-    print("User "+str(out[0][0])+" data entered")
+    try:
+        mycursor.execute(sql,val)
+        mydb.commit()
+        print("User "+str(out[0][0])+" data entered")
+    except Exception as err:
+        print("Cannot insert")
+    
