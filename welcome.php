@@ -37,18 +37,18 @@
                 include "./classes/dbh.classes.php";
                 include "./classes/quotes.classes.php";
                 include "./classes/quotes-contr.classes.php";
-                $quotesObj = new QuotesContr();
+                $quotesObj = QuotesContr::getInstance();
                 $quotes = $quotesObj->getQuotes();
                 foreach($quotes as $row){
                     echo "<tr>
                             <td>" . $row["quote"] . "</td>
-                            <td>" . $row["author"] . "</td>
+                            <td class='col-sm-2'>" . $row["author"] . "</td>
                             <td class='col-sm-2'><div class='dropdown'>
                             <button class='dropbtn'>Action</button>
                             <div class='dropdown-content'>"
                             .($row["username"]==$_SESSION["username"] ?
                               "<a href='#'>Update</a>
-                              <a href='#' class='delete'>Delete</a>"
+                              <a href='delete.php?id=".$row['id']."' class='delete'>Delete</a>"
                             :
                             "<a href='#'>Modify</a>"
                             ).

@@ -5,7 +5,7 @@ if(isset($_POST["submit"])){
     include "../classes/dbh.classes.php";
     include "../classes/quotes.classes.php";
     include "../classes/quotes-contr.classes.php";
-    $addQuote = new QuotesContr();
+    $addQuote = QuotesContr::getInstance();
 
     $addQuote->setQuote($quote);
 

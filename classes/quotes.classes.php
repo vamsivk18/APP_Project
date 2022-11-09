@@ -1,6 +1,7 @@
 <?php
 class Quotes extends Dbh{
-    protected function fetchQuotes(){
+    private function __construct(){}
+    protected function dbFetchQuotes(){
         $stmt = $this->connect()->prepare("SELECT * from quotes;");
         if(!$stmt->execute()){
             $stmt = null;

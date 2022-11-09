@@ -1,5 +1,6 @@
 <?php
 class Dbh{
+    private function __construct(){}
     protected function connect(){
         try {
             $username = "root";

@@ -11,12 +11,9 @@
         include "./classes/dbh.classes.php";
         include "./classes/quotes.classes.php";
         include "./classes/quotes-contr.classes.php";
-        $quotesObj = new QuotesContr();
+        $quotesObj = QuotesContr::getInstance();
         $quotes = $quotesObj->getSpecificQuotes();
     ?>
-    <!-- <a class='btn btn-primary btn-sm' href='addquote.php'>Add Quote</a>
-    <a class='btn btn-primary btn-sm' href='viewquote.php'>View My Quotes</a>
-    <a class='btn btn-danger btn-sm' href='logout.php'>Logout</a> -->
     <h1 class="body-center">List of Quotes by <?php echo "$quotes[0]"?></h1>
     <br>
     <table class="table">
