@@ -11,19 +11,23 @@ class LoginContr extends Login{
     }
     public function loginUser(){
         if($this->isemptyInput()==true){
-            header("location: ../index.php?error=emptyinput");
+            $_SESSION["loginerror"] = "emptyinput";
+            header("location: ../index.php");
             exit();
         }else if($this->userNotFound()==true){
-            header("location: ../index.php?error=usernotfound");
+            $_SESSION["loginerror"] = "usernotfound";
+            header("location: ../index.php");
             exit();
         }else if($this->passwordIncorrect()==true){
-            header("location: ../index.php?error=passwordincorrect");
+            $_SESSION["loginerror"] = "passwordincorrect";
+            header("location: ../index.php");
             exit();
         }
         $this->allocateSession();
     }
     private function allocateSession(){
         $_SESSION["username"] = $this->dbusername;
+        unset($_SESSION["loginerror"]);
     }
     private function isemptyInput(){
         return empty($this->username) || empty($this->password);

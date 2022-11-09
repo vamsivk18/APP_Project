@@ -20,7 +20,7 @@
         <thead>
             <tr>
                 <th>Quote</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
             </tr>
         </thead>
         <tbody>
@@ -29,10 +29,10 @@
                     echo "
                     <tr>
                         <td>" . $row["quote"] . "</td>
-                        <td>
+                        <!-- <td>
                             <a class='btn btn-primary btn-sm' href='update'>Update</a>
                             <a class='btn btn-danger btn-sm' href='delete'>Delete</a>
-                        </td>
+                        </td> -->
                     </tr>";
                 }
             ?>

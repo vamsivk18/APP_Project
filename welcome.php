@@ -21,7 +21,8 @@
     ?>
     <a class='btn btn-primary btn-sm' href='addquote.php'>Add Quote</a>
     <a class='btn btn-primary btn-sm' href='viewquotes.php'>View My Quotes</a>
-    <a class='btn btn-danger btn-sm' href='logout.php'>Logout</a>
+    <a class='btn btn-primary btn-sm' href='viewprofile.php'>View Profile</a>
+    <a onclick="return confirm('Are you sure to logout?')" class='btn btn-danger btn-sm' href='logout.php'>Logout</a>
     <h1 class="body-center">List of Quotes</h1>
     <br>
     <table class="table">
@@ -47,7 +48,7 @@
                             <button class='dropbtn'>Action</button>
                             <div class='dropdown-content'>"
                             .($row["username"]==$_SESSION["username"] ?
-                              "<a href='#'>Update</a>
+                              "<a href='updatequote.php?updateid=".$row["id"]."'>Update</a>
                               <a href='./includes/quotes.inc.php?deleteid=".$row["id"]."' class='delete'>Delete</a>"
                             :
                             "<a href='#'>Modify</a>"

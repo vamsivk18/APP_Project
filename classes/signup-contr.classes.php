@@ -14,31 +14,18 @@ class SignupContr extends SignUp{
         $this->pwdrepeat = $pwdrepeat;
     }
     public function signupUser(){
-        if($this->isemptyInput() == true) {
-            //printf($this->name . $this->email . $this->username . $this->password . $this->pwdrepeat);
-            header("location: ../signup.php?error=emptyinput");
+        if($this->isemptyInput() == true) $_SESSION["signuperror"] = "emptyinput";
+        else if($this->invalidUserName() == true) $_SESSION["signuperror"] = "invalidusername";
+        else if($this->usernameTaken() == true) $_SESSION["signuperror"] = "usernametaken";
+        else if($this->invalidEmail() == true) $_SESSION["signuperror"] = "emailtaken";
+        else if($this->pwdMisMatch() == true) $_SESSION["signuperror"] = "pwdmismatch";
+        if(isset($_SESSION["signuperror"])){
+            header("location: ../signup.php");
             exit();
-        }
-        if($this->invalidUserName() == true) {
-            header("location: ../signup.php?error=username");
-            exit();
-        }
-        if($this->invalidEmail() == true) {
-            header("location: ../signup.php?error=email");
-            exit();
-        }
-        if($this->pwdMisMatch() == true) {
-            header("location: ../signup.php?error=pwdmatch");
-            exit();
-        }
-        if($this->usernameTaken() == true) {
-            header("location: ../signup.php?error=usernametaken");
-            exit();
-        }
-        $this->setUser($this->name,$this->email,$this->username,$this->password);
+        }else $this->setUser($this->name,$this->email,$this->username,$this->password);
+        
     }
     private function isemptyInput(){
-        //return isset($this->name) && isset($this->email) && isset($this->username) && isset($this->password) && isset($this->pwdrepeat);
         if(!empty($this->name) && !empty($this->email) && !empty($this->username) && !empty($this->password) && !empty($this->pwdrepeat))
             return false;
         return true;
