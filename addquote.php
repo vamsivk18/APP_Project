@@ -10,7 +10,7 @@
 session_start();
 ?>
     <div>
-        <h2>ADD QUOTE</h2>
+        <h2>ADD A QUOTE</h2>
         <p>Please fill in the quote.</p>
         <form action="includes/addquote.inc.php" method="post">
                 <textarea name="quote" id="" cols="100" rows="5" placeholder="Enter your Quote"></textarea><br>

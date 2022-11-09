@@ -19,6 +19,7 @@
         } 
     ?>
     <a class='btn btn-primary btn-sm' href='addquote.php'>Add Quote</a>
+    <a class='btn btn-primary btn-sm' href='viewquotes.php'>View My Quotes</a>
     <a class='btn btn-danger btn-sm' href='logout.php'>Logout</a>
     <h1 class="body-center">List of Quotes</h1>
     <br>
@@ -27,7 +28,6 @@
             <tr>
                 <th>Quote</th>
                 <th>Author</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +42,6 @@
                     <tr>
                         <td>" . $row["quote"] . "</td>
                         <td>" . $row["author"] . "</td>
-                        <td>
-                            <a class='btn btn-primary btn-sm' href='update'>Update</a>
-                            <a class='btn btn-danger btn-sm' href='delete'>Delete</a>
-                        </td>
                     </tr>";
                 }
             ?>

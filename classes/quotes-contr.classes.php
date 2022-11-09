@@ -12,5 +12,8 @@ class QuotesContr extends Quotes{
     public function getQuotes(){
         return $this->quotes;
     }
+    public function getSpecificQuotes(){
+        return $this->dbGetSpecificQuotes("");
+    }
 }
 ?>

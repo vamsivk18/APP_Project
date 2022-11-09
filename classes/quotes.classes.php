@@ -10,6 +10,21 @@ class Quotes extends Dbh{
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     }
+    protected function dbGetName($username){
+        $stmt = $this->connect()->prepare('SELECT name FROM users WHERE username=?;');
+        if(!$stmt->execute(array($username))){
+            $stmt = null;
+            header("location: ../error.php?error=db_getnameforsetquotefailed");
+            exit();
+        }
+        if($stmt->rowCount()==0){
+            $stmt = null;
+            header("location: ../error.php?error=db_nousername");
+            exit();
+        }
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row[0]["name"];
+    }
     protected function dbSetQuote($quote,$username){
         $stmt = $this->connect()->prepare('SELECT name FROM users WHERE username=?;');
         if(!$stmt->execute(array($username))){
@@ -24,6 +39,18 @@ class Quotes extends Dbh{
             $stmt = null;
             header("location: ../error.php?error=db_setquotefailed");
             exit();
+        }
+    }
+    protected function dbGetSpecificQuotes($author){
+        if($author==""){
+            $stmt = $this->connect()->prepare('SELECT quote from quotes where username=?;');
+            if(!$stmt->execute(array($_SESSION["username"]))){
+                $stmt = null;
+            header("location: ../error.php?error=db_getspecificquotesfailed");
+            exit();
+            }
+            $quotes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return array($this->dbGetName($_SESSION["username"]),$quotes);
         }
     }
 }
