@@ -15,6 +15,7 @@
                 <label>Password&emsp;&ensp;&emsp;&emsp;:</label><input type="password" name="password" placeholder="Password"><br><br>
                 <label>Repeat Password&ensp;:</label><input type="password" name="pwdrepeat" placeholder="Repeat Password"><br><br>
             <button type="submit" name="submit">SIGN UP</button>
+            <p>Already have an account? <a href="index.php">Login now</a>.</p>
         </form>
     </div>
 </body>
