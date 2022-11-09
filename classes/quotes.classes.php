@@ -26,6 +26,29 @@ class Quotes extends Dbh{
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row[0]["name"];
     }
+    protected function dbgetquoteusername($id){
+        $stmt = $this->connect()->prepare('SELECT username FROM quotes WHERE id=?;');
+        if(!$stmt->execute(array($id))){
+            $stmt = null;
+            header("location: ../error.php?error=db_getusernamefordeletequotefailed");
+            exit();
+        }
+        if($stmt->rowCount()==0){
+            $stmt = null;
+            header("location: ../error.php?error=db_nousername");
+            exit();
+        }
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row[0]["username"];
+    }
+    protected function dbDeleteQuote($id){
+        $stmt = $this->connect()->prepare('DELETE FROM quotes WHERE id=?;');
+        if(!$stmt->execute(array($id))){
+            $stmt = null;
+            header("location: ../error.php?error=db_deletequotefailed");
+            exit();
+        }
+    }
     protected function dbSetQuote($quote,$username){
         $stmt = $this->connect()->prepare('SELECT name FROM users WHERE username=?;');
         if(!$stmt->execute(array($username))){

@@ -48,7 +48,7 @@
                             <div class='dropdown-content'>"
                             .($row["username"]==$_SESSION["username"] ?
                               "<a href='#'>Update</a>
-                              <a href='delete.php?id=".$row['id']."' class='delete'>Delete</a>"
+                              <a href='./includes/quotes.inc.php?deleteid=".$row["id"]."' class='delete'>Delete</a>"
                             :
                             "<a href='#'>Modify</a>"
                             ).

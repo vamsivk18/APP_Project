@@ -5,6 +5,9 @@
     <title>SIGN UP</title>
 </head>
 <body>
+    <?php
+        session_start();
+    ?>
     <div>
         <h2>SIGN UP</h2>
         <p>Please fill in your credentials to Sign Up.</p>

@@ -5,6 +5,9 @@
     <title>Login</title>
 </head>
 <body>
+    <?php
+        session_start();
+    ?>
     <div>
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
