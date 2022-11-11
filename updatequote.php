@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="nav_styles.css">
+    <link rel="stylesheet" href="./styles/nav_styles.css">
     <title>ADD QUOTE</title>
 </head>
 <body>

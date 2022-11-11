@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="login_signup_styles.css">
+    <link rel="stylesheet" href="./styles/login_signup_styles.css">
     <title>SIGN UP</title>
 </head>
 <body>
