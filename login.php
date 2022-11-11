@@ -8,7 +8,9 @@
 <body>
     <div class="center">
         <h2>Login</h2>
-        <?php include './reuse/Reuse.class.php';R::ss(); R::loginDataCheck();?>
+        <?php 
+        include './includes.php';
+        R::ss(); R::loginDataCheck();?>
         <form action="includes/login.inc.php" method="post">
             <div class="txt_field">
                 <input type="text" name="username" placeholder="Username"><label></label>

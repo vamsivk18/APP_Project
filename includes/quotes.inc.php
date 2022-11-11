@@ -1,8 +1,6 @@
 <?php
 session_start();
-include "../classes/dbh.classes.php";
-include "../classes/quotes.classes.php";
-include "../classes/quotes-contr.classes.php";
+include 'includes.php';
 if(isset($_POST["addquote"])){
     $quotesContr = QuotesContr::getInstance();
     $quote = $_POST["quote"];
