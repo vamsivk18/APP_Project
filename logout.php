@@ -1,7 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION["username"])){
-    unset($_SESSION["username"]);
-}
-header("location: index.php?error=logout");
+session_destroy();
+header("location: login.php");
 ?>

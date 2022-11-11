@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
     $signup->signupUser();
 
     //Going back to front page
-    header("location: ../index.php");
+    header("location: ../login.php");
     exit();
 }
 ?>

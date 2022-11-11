@@ -8,7 +8,7 @@
     <title>Welcome</title>
 </head>
 <body>
-    <?php include './reuse/Reuse.class.php';R::ss();R::checkLogin();R::quoteStatusAlert();R::nav();?>
+    <?php include './reuse/Reuse.class.php'; R::ss();R::checkLogin();R::nav();?>
     <div class="mainbody">
         <h1 class="body-center">List of Quotes</h1><br>
         <table class="table">
@@ -47,12 +47,4 @@
             </tbody>
         </table>
     </div>
-    <script>
-        function searchQuotes(){
-        let val = prompt("Please enter the Author name");
-        if(!val) return false;
-        let loc = "search.php?searchkey="+val;
-        top.location.href = loc;
-        }
-    </script>
 </body></html>

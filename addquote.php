@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="nav_styles.css">
     <title>ADD QUOTE</title>
 </head>
-<body style="margin: 50px;">
-<?php
-session_start();
-?>
-    <div>
+<body>
+<?php include './reuse/Reuse.class.php';R::ss();R::nav();?>
+    <div class="mainbody">
         <h2>ADD A QUOTE</h2>
-        <p>Please fill in the quote.</p>
+        <p>Please enter your quote.</p>
         <form action="includes/quotes.inc.php" method="post">
-                <textarea name="quote" id="" cols="100" rows="5" placeholder="Enter your Quote"></textarea><br>
-            <button class='btn btn-primary btn-sm' type="submit" name="submit">Submit Quote</button>
+                <textarea name="quote" id="" cols="100" rows="5" placeholder="Quote goes here..."></textarea><br>
+            <div style="width: 25%;"><button class='btn btn-primary btn-sm' type="submit" name="addquote">Submit Quote</button></div>
         </form>
     </div>
 </body>

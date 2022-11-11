@@ -4,7 +4,7 @@ class Login extends Dbh{
         $stmt = $this->connect()->prepare("SELECT username from users where username=? OR email=?;");
         if(!$stmt->execute(array($username,$username))){
             $stmt = null;
-            header("location: ../index.php?error=db_loginfetchusernamefailed");
+            header("location: ../login.php?error=db_loginfetchusernamefailed");
             exit();
         }
         if($stmt->rowCount()==0) return "";
@@ -15,7 +15,7 @@ class Login extends Dbh{
         $stmt = $this->connect()->prepare("SELECT password from users where username=? OR email=?;");
         if(!$stmt->execute(array($username,$username))){
             $stmt = null;
-            header("location: ../index.php?error=db_loginpasswordfetchfailed");
+            header("location: ../login.php?error=db_loginpasswordfetchfailed");
             exit();
         }
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
