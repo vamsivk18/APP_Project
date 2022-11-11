@@ -1,8 +1,8 @@
 <?php
 session_start();
 include 'includes.php';
+$quotesContr = new QuotesContr();
 if(isset($_POST["addquote"])){
-    $quotesContr = QuotesContr::getInstance();
     $quote = $_POST["quote"];
     $quotesContr->setQuote($quote);
     $_SESSION["quotestatus"] = "added";
@@ -10,7 +10,6 @@ if(isset($_POST["addquote"])){
     exit();
 }
 if(isset($_POST["updatequotebutton"])){
-    $quotesContr = QuotesContr::getInstance();
     $updatedquote = $_POST["updatequote"];
     $quotesContr->updateQuote($_GET["updateid"],$updatedquote);
     $_SESSION["quotestatus"] = "updated";
@@ -19,7 +18,6 @@ if(isset($_POST["updatequotebutton"])){
     exit();
 }
 if(isset($_GET["deleteid"])){
-    $quotesContr = QuotesContr::getInstance();
     $id = $_GET["deleteid"];
     $quotesContr->deleteQuote($id);
     $_SESSION["quotestatus"] = "deleted";

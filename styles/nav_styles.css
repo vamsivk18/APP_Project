@@ -11,7 +11,7 @@ nav{
     align-items: center;
     padding: 10px 10% 10px 10%;
     justify-content: space-between;
-    background-color: yellow;
+    background-color: white;
     /* To fix nav bar below code */
     position: fixed;
     top: 0;
@@ -38,7 +38,7 @@ nav ul li a:hover{
 nav .logout{
     text-decoration: none;
     border: none;
-    background: red;
+    background: rgb(243, 88, 88);
     padding: 12px 30px;
     border-radius: 20px;
     color: white;
@@ -47,6 +47,7 @@ nav .logout{
     transition: 0.4s;
 }
 nav .logout:hover{
+    background: red;
     transform: scale(1.3);
     cursor: pointer;
 }
@@ -71,4 +72,8 @@ button[type="submit"]{
   button[type="submit"]:hover{
     border-color: #2691d9;
     transition: .5s;
+  }
+  .quotetextarea{
+    padding-left: 10px;
+    font-size: large;
   }

@@ -8,35 +8,35 @@
 </head>
 <body>
     <?php include 'includes.php';R::ss();R::checkLogin();R::nav();
-        $quotesObj = QuotesContr::getInstance();
-        $quotes = $quotesObj->getSpecificQuotes();
+        $quotesObj = new QuotesContr();
+        if(isset($_GET["un"])) $username = $_GET["un"];
+        else $username = $_SESSION["username"];
+        $quotes = $quotesObj->getAllQuotesUsername($username);
+        $name = $quotesObj->getNamebyUsername($username);
     ?>
     <div class="mainbody">
-    <h1 class="body-center">List of Quotes by <?php echo "$quotes[0]"?></h1>
-    <br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Quote</th>
-                <!-- <th>Action</th> -->
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($quotes[1] as $row){
-                    echo "
-                    <tr>
-                        <td>" . $row["quote"] . "</td>
-                        <!-- <td>
-                            <a class='btn btn-primary btn-sm' href='update'>Update</a>
-                            <a class='btn btn-danger btn-sm' href='delete'>Delete</a>
-                        </td> -->
-                    </tr>";
-                }
-            ?>
-        </tbody>
-    </table>
-
+        <h2 class="body-center">List of Quotes by <?php echo "$name"?></h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Quote</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach($quotes as $row){
+                        echo "
+                        <tr>
+                            <td>" . $row["quote"] . "</td>
+                            <!-- <td>
+                                <a class='btn btn-primary btn-sm' href='update'>Update</a>
+                                <a class='btn btn-danger btn-sm' href='delete'>Delete</a>
+                            </td> -->
+                        </tr>";
+                    }
+                ?>
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+</body></html>

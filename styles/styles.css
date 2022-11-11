@@ -68,3 +68,29 @@
     border-color: #2691d9;
     transition: .5s;
   }
+  a.button {
+    background: #ff5200;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    color: white;
+    line-height: 50px;
+}
+.profileoptions{
+  display: flex;
+  margin-top: 20px;
+  width: 30%;
+  height: 50px;
+  justify-content: space-between;
+  /* background-color: #f1887f; */
+}
+a.button:hover{
+    background: #fe5f50;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    color: white;
+    line-height: 50px;
+}

@@ -21,8 +21,8 @@
             </thead>
             <tbody>
                 <?php 
-                $quotesObj = QuotesContr::getInstance();
-                $quotes = $quotesObj->getQuotes();
+                $quotesObj = new QuotesContr();
+                $quotes = $quotesObj->getAllQuotesUsername('-');
                 foreach($quotes as $row){
                     echo "<tr>
                             <td>" . $row["quote"] . "</td>
@@ -32,9 +32,9 @@
                             <div class='dropdown-content'>"
                             .($row["username"]==$_SESSION["username"] ?
                               '<a href="updatequote.php?updateid='.$row["id"].'">Update</a>
-                              <a onclick="return confirm(\'sure to delete !\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
+                              <a onclick="return confirm(\'Are you sure to Delete?\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
                             :
-                            "<a href='#'>Modify</a>"
+                            '<a href="profile.php?viewid='.$row['id'].'">View Profile</a>'
                             ).
                             "</div>
                           </div></td>
@@ -44,12 +44,4 @@
             </tbody>
         </table>
     </div>
-    <script>
-        function searchQuotes(){
-        let val = prompt("Please enter the Author name");
-        if(!val) return false;
-        let loc = "search.php?searchkey="+val;
-        top.location.href = loc;
-        }
-    </script>
 </body></html>

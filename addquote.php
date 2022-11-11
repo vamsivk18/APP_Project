@@ -12,7 +12,7 @@
         <h2>ADD A QUOTE</h2>
         <p>Please enter your quote.</p>
         <form action="includes/quotes.inc.php" method="post">
-                <textarea name="quote" id="" cols="100" rows="5" placeholder="Quote goes here..."></textarea><br>
+                <textarea class="quotetextarea" name="quote" id="" cols="100" rows="5" placeholder="Quote goes here..."></textarea><br>
             <div style="width: 25%;"><button class='btn btn-primary btn-sm' type="submit" name="addquote">Submit Quote</button></div>
         </form>
     </div>

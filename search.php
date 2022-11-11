@@ -56,7 +56,7 @@
                                   '<a href="updatequote.php?updateid='.$row["id"].'">Update</a>
                                   <a onclick="return confirm(\'sure to delete !\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
                                 :
-                                "<a href='#'>Modify</a>"
+                                "<a href='profile.php?viewid=".$row['id']."'>View Profile</a>"
                                 ).
                                 "</div>
                               </div></td>
