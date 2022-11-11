@@ -35,6 +35,8 @@ class R{
                 print("<p>User with this username exists</p>");
             }else if($signuperror=="emailtaken"){
                 print("<p>User with this email exists</p>");
+            }else if($signuperror=="invalidpassword"){
+                print("<p>Password is too short</p>");
             }else if($signuperror=="emailtaken"){
                 print("<p>Password mismatch</p>");
             }
