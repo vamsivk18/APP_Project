@@ -7,10 +7,7 @@
 </head>
 <body>
 <?php
-include './reuse/Reuse.class.php';R::ss();R::checkLogin();R::nav();
-include "./classes/dbh.classes.php";
-include "./classes/quotes.classes.php";
-include "./classes/quotes-contr.classes.php";
+include 'includes.php';R::ss();R::checkLogin();R::nav();
 $quoteContr = QuotesContr::getInstance();
 $row = $quoteContr->getQuote($_GET["updateid"]);
 ?>

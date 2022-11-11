@@ -9,7 +9,7 @@
     <title>Search</title>
 </head>
 <body>
-    <?php include './reuse/Reuse.class.php';R::ss(); R::checkLogin(); R::nav();?>
+    <?php include 'includes.php';R::ss(); R::checkLogin(); R::nav();?>
     <div class="mainbody">
         <form action="./includes/search.inc.php" method="POST">
             <div class="searchfield">
@@ -27,9 +27,6 @@
         <h1>List of Quotes</h1><br>
         
                 <?php 
-                include "./classes/dbh.classes.php";
-                include "./classes/search.classes.php";
-                include "./classes/search-contr.classes.php";
                 if(!isset($_SESSION["searchoption"]) || !isset($_SESSION["searchkey"])) $quotes = array();
                 else{
                     $quotesContr = SearchContr::getInstance($_SESSION["searchoption"],$_SESSION["searchkey"]);

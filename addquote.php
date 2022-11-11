@@ -7,7 +7,7 @@
     <title>ADD QUOTE</title>
 </head>
 <body>
-<?php include './reuse/Reuse.class.php';R::ss();R::nav();?>
+<?php include 'includes.php';R::ss();R::nav();?>
     <div class="mainbody">
         <h2>ADD A QUOTE</h2>
         <p>Please enter your quote.</p>

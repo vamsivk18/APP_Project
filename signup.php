@@ -8,7 +8,7 @@
 <body>
     <div class="center">
         <h2>SIGN UP</h2>
-        <?php include './reuse/Reuse.class.php';R::ss();R::signupDataCheck();?>
+        <?php include 'includes.php';R::ss();R::signupDataCheck();?>
         <form action="includes/signup.inc.php" method="post">
             <div class="txt_field">
                 <input type="text" name="name" placeholder="Name"><label></label>

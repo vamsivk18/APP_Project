@@ -9,7 +9,7 @@
     <div class="center">
         <h2>Login</h2>
         <?php 
-        include './includes.php';
+        include 'includes.php';
         R::ss(); R::loginDataCheck();?>
         <form action="includes/login.inc.php" method="post">
             <div class="txt_field">

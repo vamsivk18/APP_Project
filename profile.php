@@ -8,7 +8,7 @@
     <title>Welcome</title>
 </head>
 <body>
-    <?php include './reuse/Reuse.class.php'; R::ss();R::checkLogin();R::nav();?>
+    <?php include 'includes.php'; R::ss();R::checkLogin();R::nav();?>
     <div class="mainbody">
         
     </div>

@@ -8,7 +8,7 @@
     <title>Welcome</title>
 </head>
 <body>
-    <?php include './reuse/Reuse.class.php';R::ss();R::checkLogin();R::quoteStatusAlert();R::nav();?>
+    <?php include 'includes.php';R::ss();R::checkLogin();R::quoteStatusAlert();R::nav();?>
     <div class="mainbody">
         <h1 class="body-center">List of Quotes</h1><br>
         <table class="table">
@@ -21,9 +21,6 @@
             </thead>
             <tbody>
                 <?php 
-                include "./classes/dbh.classes.php";
-                include "./classes/quotes.classes.php";
-                include "./classes/quotes-contr.classes.php";
                 $quotesObj = QuotesContr::getInstance();
                 $quotes = $quotesObj->getQuotes();
                 foreach($quotes as $row){

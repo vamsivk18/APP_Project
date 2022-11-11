@@ -7,10 +7,7 @@
     <title>View Quotes</title>
 </head>
 <body>
-    <?php include './reuse/Reuse.class.php';R::ss();R::checkLogin();R::nav();
-        include "./classes/dbh.classes.php";
-        include "./classes/quotes.classes.php";
-        include "./classes/quotes-contr.classes.php";
+    <?php include 'includes.php';R::ss();R::checkLogin();R::nav();
         $quotesObj = QuotesContr::getInstance();
         $quotes = $quotesObj->getSpecificQuotes();
     ?>
