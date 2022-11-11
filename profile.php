@@ -10,41 +10,6 @@
 <body>
     <?php include './reuse/Reuse.class.php'; R::ss();R::checkLogin();R::nav();?>
     <div class="mainbody">
-        <h1 class="body-center">List of Quotes</h1><br>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Quote</th>
-                    <th>Author</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                include "./classes/dbh.classes.php";
-                include "./classes/quotes.classes.php";
-                include "./classes/quotes-contr.classes.php";
-                $quotesObj = QuotesContr::getInstance();
-                $quotes = $quotesObj->getQuotes();
-                foreach($quotes as $row){
-                    echo "<tr>
-                            <td>" . $row["quote"] . "</td>
-                            <td class='col-sm-2'>" . $row["author"] . "</td>
-                            <td class='col-sm-2'><div class='dropdown'>
-                            <button class='dropbtn'>Action</button>
-                            <div class='dropdown-content'>"
-                            .($row["username"]==$_SESSION["username"] ?
-                              '<a href="updatequote.php?updateid='.$row["id"].'">Update</a>
-                              <a onclick="return confirm(\'sure to delete !\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
-                            :
-                            "<a href='#'>Modify</a>"
-                            ).
-                            "</div>
-                          </div></td>
-                            </tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+        
     </div>
 </body></html>
