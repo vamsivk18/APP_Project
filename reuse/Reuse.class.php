@@ -45,8 +45,11 @@ class R{
         }else print("<br>");
     }
     public static function loginDataCheck(){
-        if(isset($_GET["ln"]) && $_GET["ln"]=='err'){
-            print("<div  class='login_error'><p>Login or Sign Up first</p></div>");
+        if(!isset($_SESSION["username"]) && isset($_GET["ln"]) && $_GET["ln"]=='err'){
+            print("<script>alert('Login or Signup first.')</script>");
+        }else if(isset($_GET["sup"]) && $_GET["sup"]=='sus'){
+            print("<script>alert('Signup Succesfull.')</script>");
+            unset($_GET["sup"]);
         }
         if(isset($_SESSION["loginerror"])){
             $loginerror = $_SESSION["loginerror"];
