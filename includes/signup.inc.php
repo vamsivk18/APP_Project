@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'includes.php';
 if(isset($_POST["submit"])){
     // Grabbing the data
     $name = $_POST["name"];
@@ -9,16 +10,13 @@ if(isset($_POST["submit"])){
     $pwdrepeat = $_POST["pwdrepeat"];
 
     // Instantiate SignupContr class
-    include "../classes/dbh.classes.php";
-    include "../classes/signup.classes.php";
-    include "../classes/signup-contr.classes.php";
     $signup = new SignupContr($name,$email,$username,$password,$pwdrepeat);
 
     // Running error handlers and user
     $signup->signupUser();
 
     //Going back to front page
-    header("location: ../index.php");
+    header("location: ../login.php?sup=sus");
     exit();
 }
 ?>

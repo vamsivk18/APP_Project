@@ -3,43 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/nav_styles.css">
     <title>Welcome</title>
 </head>
-<body style="margin: 50px;">
-    <?php 
-        session_start();
-        if(isset($_SESSION["username"])){
-    ?>
-    <h1>Welcome 
-        <?php 
-            print($_SESSION["username"]);
-        ?>
-    </h1>
-    <?php 
-        } 
-    ?>
-    <a class='btn btn-primary btn-sm' href='addquote.php'>Add Quote</a>
-    <a class='btn btn-primary btn-sm' href='viewquotes.php'>View My Quotes</a>
-    <a class='btn btn-primary btn-sm' href='viewprofile.php'>View Profile</a>
-    <a onclick="return confirm('Are you sure to logout?')" class='btn btn-danger btn-sm' href='logout.php'>Logout</a>
-    <h1 class="body-center">List of Quotes</h1>
-    <br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Quote</th>
-                <th>Author</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-                include "./classes/dbh.classes.php";
-                include "./classes/quotes.classes.php";
-                include "./classes/quotes-contr.classes.php";
-                $quotesObj = QuotesContr::getInstance();
-                $quotes = $quotesObj->getQuotes();
+<body>
+    <?php include 'includes.php';R::ss();R::checkLogin();R::quoteStatusAlert();R::nav();?>
+    <div class="mainbody">
+        <h1 class="body-center">List of Quotes</h1><br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Quote</th>
+                    <th>Author</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                $quotesObj = new QuotesContr();
+                $quotes = $quotesObj->getAllQuotesUsername('-');
                 foreach($quotes as $row){
                     echo "<tr>
                             <td>" . $row["quote"] . "</td>
@@ -48,17 +31,17 @@
                             <button class='dropbtn'>Action</button>
                             <div class='dropdown-content'>"
                             .($row["username"]==$_SESSION["username"] ?
-                              "<a href='updatequote.php?updateid=".$row["id"]."'>Update</a>
-                              <a href='./includes/quotes.inc.php?deleteid=".$row["id"]."' class='delete'>Delete</a>"
+                              '<a href="updatequote.php?updateid='.$row["id"].'">Update</a>
+                              <a onclick="return confirm(\'Are you sure to Delete?\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
                             :
-                            "<a href='#'>Modify</a>"
+                            '<a href="profile.php?viewid='.$row['id'].'">View Profile</a>'
                             ).
                             "</div>
                           </div></td>
                             </tr>";
                 }
-            ?>
-        </tbody>
-    </table>
-</body>
-</html>
+                ?>
+            </tbody>
+        </table>
+    </div>
+</body></html>

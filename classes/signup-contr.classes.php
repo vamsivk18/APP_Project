@@ -18,6 +18,7 @@ class SignupContr extends SignUp{
         else if($this->invalidUserName() == true) $_SESSION["signuperror"] = "invalidusername";
         else if($this->usernameTaken() == true) $_SESSION["signuperror"] = "usernametaken";
         else if($this->invalidEmail() == true) $_SESSION["signuperror"] = "emailtaken";
+        else if($this->passwordtooshort()==true) $_SESSION["signuperror"] = "invalidpassword";
         else if($this->pwdMisMatch() == true) $_SESSION["signuperror"] = "pwdmismatch";
         if(isset($_SESSION["signuperror"])){
             header("location: ../signup.php");
@@ -37,6 +38,10 @@ class SignupContr extends SignUp{
     }
     private function invalidEmail(){
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) return true;
+        return false;
+    }
+    private function passwordtooshort(){
+        if(strlen($this->password)<=5) return true;
         return false;
     }
     private function pwdMisMatch(){

@@ -14,7 +14,7 @@ class SignUp extends Dbh{
         $stmt = $this->connect()->prepare('SELECT username FROM users WHERE username = ? OR email = ?;');
         if(!$stmt->execute(array($username,$email))){
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed");
+            header("location: ../login.php?error=stmtfailed");
             exit();
         }
         if($stmt->rowCount()>0) return true;

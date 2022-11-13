@@ -12,15 +12,15 @@ class LoginContr extends Login{
     public function loginUser(){
         if($this->isemptyInput()==true){
             $_SESSION["loginerror"] = "emptyinput";
-            header("location: ../index.php");
+            header("location: ../login.php");
             exit();
         }else if($this->userNotFound()==true){
             $_SESSION["loginerror"] = "usernotfound";
-            header("location: ../index.php");
+            header("location: ../login.php");
             exit();
         }else if($this->passwordIncorrect()==true){
             $_SESSION["loginerror"] = "passwordincorrect";
-            header("location: ../index.php");
+            header("location: ../login.php");
             exit();
         }
         $this->allocateSession();
