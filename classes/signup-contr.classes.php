@@ -1,16 +1,10 @@
 <?php
 class SignupContr extends SignUp{
-    private $name;
-    private $email;
-    private $username;
-    private $password;
+    private User $user;
     private $pwdrepeat;
 
-    public function __construct($name,$email,$username,$password,$pwdrepeat){
-        $this->name = $name;
-        $this->email = $email;
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct(User $user,$pwdrepeat){
+        $this->user = $user;
         $this->pwdrepeat = $pwdrepeat;
     }
     public function signupUser(){
@@ -23,33 +17,32 @@ class SignupContr extends SignUp{
         if(isset($_SESSION["signuperror"])){
             header("location: ../signup.php");
             exit();
-        }else $this->setUser($this->name,$this->email,$this->username,$this->password);
+        }else $this->dbsetUser($this->user);
         
     }
     private function isemptyInput(){
-        if(!empty($this->name) && !empty($this->email) && !empty($this->username) && !empty($this->password) && !empty($this->pwdrepeat))
+        if(!empty($this->user->getName()) && !empty($this->user->getEmail()) && !empty($this->user->getusername()) && !empty($this->user->getpassword()) && !empty($this->pwdrepeat))
             return false;
         return true;
-        
     }
     private function invalidUserName(){
-        if(!preg_match("/^[a-zA-Z0-9]*$/",$this->username)) return true;
+        if(!preg_match("/^[a-zA-Z0-9]*$/",$this->user->getusername())) return true;
         return false;
     }
     private function invalidEmail(){
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) return true;
+        if(!filter_var($this->user->getEmail(), FILTER_VALIDATE_EMAIL)) return true;
         return false;
     }
     private function passwordtooshort(){
-        if(strlen($this->password)<=5) return true;
+        if(strlen($this->user->getPassword())<=5) return true;
         return false;
     }
     private function pwdMisMatch(){
-        if(strcmp($this->password,$this->pwdrepeat)!==0) return true;
+        if(strcmp($this->user->getPassword(),$this->pwdrepeat)!==0) return true;
         return false;
     }
     private function usernameTaken(){
-        return $this->checkUser($this->username,$this->email);
+        return $this->dbcheckifexists($this->user);
     }
 }
 ?>

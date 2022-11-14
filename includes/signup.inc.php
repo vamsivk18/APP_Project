@@ -10,7 +10,8 @@ if(isset($_POST["submit"])){
     $pwdrepeat = $_POST["pwdrepeat"];
 
     // Instantiate SignupContr class
-    $signup = new SignupContr($name,$email,$username,$password,$pwdrepeat);
+    $user = new User($name,$email,$username,$password);
+    $signup = new SignupContr($user,$pwdrepeat);
 
     // Running error handlers and user
     $signup->signupUser();
