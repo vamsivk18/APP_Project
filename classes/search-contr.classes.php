@@ -5,10 +5,10 @@ class SearchContr extends Search{
     private $searchkey;
     private $searchquotes = array();
 
-    private function __construct($searchtype,$searchfor){
+    public function __construct($searchtype,$searchfor){
         $this->searchtype = $searchtype;
         $this->searchfor = $searchfor;
-        $this->searchquotes = $this->dbfetchsearchquotes($searchtype,$searchfor);
+        $this->searchquotes = $this->dbfetchsearchquotes(new Quote(),$searchtype,$searchfor);
     }
     public static function getInstance($searchoption,$searchkey){
         if(self::$instance==null || self::$instance->searchoption!==$searchoption || self::$instance->searchkey!==$searchkey)

@@ -36,5 +36,20 @@ class Mapper extends Dbh{
         $user->setUser($userarray->getName(),$userarray->getEmail(),$userarray->getUsername(),$userarray->getPassword());
         return $user;
     }
+
+    protected function mapgetQuoteData($type,$key) :array{
+        $query = 'SELECT * FROM quotes WHERE '.$type.' regexp ?';
+        $stmt = $this->mapprepare($query);
+        $values = array($key);
+        $results = $this->mapexecutestmt($stmt,$values)->fetchAll(PDO::FETCH_ASSOC);
+        $quotesarray = array();
+        $val = sizeof($results);
+        foreach($results as $row){
+            $quote = new Quote();
+            $quote->setQuote($row["id"],$row["quote"],$row["author"],$row["username"]);
+            array_push($quotesarray,$quote);
+        }
+        return $quotesarray;
+    }
 }
 ?>

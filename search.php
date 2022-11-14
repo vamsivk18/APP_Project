@@ -9,17 +9,21 @@
     <title>Search</title>
 </head>
 <body>
-    <?php include 'includes.php';R::ss(); R::checkLogin(); R::nav();?>
+    <?php include 'includes.php';R::ss(); R::checkLogin(); R::nav();
+    if(isset($_SESSION["searchkey"])) $val = $_SESSION["searchkey"];
+    else $val = "";
+    if(isset($_SESSION["searchoption"])) $selected = $_SESSION["searchoption"];
+    ?>
     <div class="mainbody">
         <form action="./includes/search.inc.php" method="POST">
             <div class="searchfield">
                 <label>Search for </label>
                 <select name="searchoption" class="searchselect">
-                    <option value="quote" class="selectoption">Quotes</option>
-                    <option value="author" class="selectoption">Author</option>
+                    <option value="quote" class="selectoption" <?php if($selected=="quote") print("selected")?>>Quotes</option>
+                    <option value="author" class="selectoption" <?php if($selected=="author") print("selected")?>>Author</option>
                 </select>
                 <label>containing</label>
-                <input type="text" name="searchkey" placeholder="Enter your search input" class="searchbox">
+                <input type="text" name="searchkey" placeholder="Enter your search input" class="searchbox" value=<?php print($val)?>>
                 <input type="submit" name="search" value="Search" class="buttonsubmit">
             </div>
         </form>
@@ -29,7 +33,8 @@
                 <?php 
                 if(!isset($_SESSION["searchoption"]) || !isset($_SESSION["searchkey"])) $quotes = array();
                 else{
-                    $quotesContr = SearchContr::getInstance($_SESSION["searchoption"],$_SESSION["searchkey"]);
+                    //$quotesContr = SearchContr::getInstance($_SESSION["searchoption"],$_SESSION["searchkey"]);
+                    $quotesContr = new SearchContr($_SESSION["searchoption"],$_SESSION["searchkey"]);
                     $quotes = $quotesContr->getsearchquotes();
                 }
                 $val = sizeof($quotes);
@@ -45,18 +50,18 @@
                         </tr>
                     </thead>
                     <tbody>";
-                    foreach($quotes as $row){
+                    foreach($quotes as $quote){
                         echo "<tr>
-                                <td>" . $row["quote"] . "</td>
-                                <td class='col-sm-2'>" . $row["author"] . "</td>
+                                <td>" . $quote->getquote() . "</td>
+                                <td class='col-sm-2'>" . $quote->getauthor() . "</td>
                                 <td class='col-sm-2'><div class='dropdown'>
                                 <button class='dropbtn'>Action</button>
                                 <div class='dropdown-content'>"
-                                .($row["username"]==$_SESSION["username"] ?
-                                  '<a href="updatequote.php?updateid='.$row["id"].'">Update</a>
-                                  <a onclick="return confirm(\'sure to delete !\');" href="./includes/quotes.inc.php?deleteid='.$row["id"].'" class="delete">Delete</a>'
+                                .($quote->getusername()==$_SESSION["username"] ?
+                                  '<a href="updatequote.php?updateid='.$quote->getid().'">Update</a>
+                                  <a onclick="return confirm(\'sure to delete !\');" href="./includes/quotes.inc.php?deleteid='.$quote->getid().'" class="delete">Delete</a>'
                                 :
-                                "<a href='profile.php?viewid=".$row['id']."'>View Profile</a>"
+                                "<a href='profile.php?viewid=".$quote->getid()."'>View Profile</a>"
                                 ).
                                 "</div>
                               </div></td>

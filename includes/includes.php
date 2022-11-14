@@ -10,5 +10,6 @@ include "../classes/signup-contr.classes.php";
 include "../classes/login.classes.php";
 include "../classes/login-contr.classes.php";
 include "../reuse/Reuse.class.php";
-include "../classes/User.class.php"
+include "../classes/User.class.php";
+include "../classes/Quote.class.php";
 ?>

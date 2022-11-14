@@ -12,5 +12,6 @@ include './classes/signup-contr.classes.php';
 include './classes/profile.classes.php';
 include './classes/profile-contr.classes.php';
 include './reuse/Reuse.class.php';
-include "./classes/user.class.php"
+include "./classes/user.class.php";
+include "./classes/Quote.class.php";
 ?>
