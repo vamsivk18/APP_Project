@@ -6,9 +6,9 @@ if(isset($_POST["submit"])){
     $password = $_POST["password"];
     $login = new LoginContr($username,$password);
 
-    $login->loginUser();
-
+    if($login->loginUser()==true)
     header("location: ../welcome.php");
+    else header("location: ../login.php");
     exit();
 }
 ?>

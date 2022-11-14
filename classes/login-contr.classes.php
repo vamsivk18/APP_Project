@@ -10,33 +10,25 @@ class LoginContr extends Login{
         $this->dbusername = $this->fetchUserName($username);
     }
     public function loginUser(){
-        if($this->isemptyInput()==true){
-            $_SESSION["loginerror"] = "emptyinput";
-            header("location: ../login.php");
-            exit();
-        }else if($this->userNotFound()==true){
-            $_SESSION["loginerror"] = "usernotfound";
-            header("location: ../login.php");
-            exit();
-        }else if($this->passwordIncorrect()==true){
-            $_SESSION["loginerror"] = "passwordincorrect";
-            header("location: ../login.php");
-            exit();
-        }
-        $this->allocateSession();
+        if($this->isemptyInput()==true) $_SESSION["loginerror"] = "emptyinput";
+        else if($this->userNotFound()==true) $_SESSION["loginerror"] = "usernotfound";
+        else if($this->passwordIncorrect()==true) $_SESSION["loginerror"] = "passwordincorrect";
+        if(isset($_SESSION["loginerror"])) return false;
+        else return $this->allocateSession();
     }
     private function allocateSession(){
         $_SESSION["username"] = $this->dbusername;
         unset($_SESSION["loginerror"]);
+        return true;
     }
-    private function isemptyInput(){
+    public function isemptyInput(){
         return empty($this->username) || empty($this->password);
     }
-    private function userNotFound(){
+    public function userNotFound(){
         if($this->dbusername=="") return true;
         return false;
     }
-    private function passwordIncorrect(){
+    public function passwordIncorrect(){
         $dbpassword = $this->fetchPassword($this->username);
         if(strcmp($dbpassword,$this->password)!==0) return true;
         return false;
