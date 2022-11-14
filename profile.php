@@ -16,11 +16,11 @@
             $username = $quotesContr->getUserNamebyId($_GET["viewid"]);
         }else $username = $_SESSION["username"];
         $profileContr = ProfileContr::getInstance($username);
-        $profile = $profileContr->getprofile();
-        $name = $profile["name"];
-        $username = $profile["username"];
-        $email = $profile["email"];
-        $password = $profile["password"];
+        $userprofile = $profileContr->getuser();
+        $name = $userprofile->getName();
+        $username = $userprofile->getUsername();
+        $email = $userprofile->getEmail();
+        $password = $userprofile->getPassword();
         print('
         <div class="col-lg-8">
         <div class="card">

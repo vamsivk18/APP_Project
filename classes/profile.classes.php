@@ -1,14 +1,9 @@
 <?php
-class Profile extends Dbh{
-    protected function dbgetprofile($username){
-        $stmt = $this->connect()->prepare("SELECT * from users where username=?");
-        if(!$stmt->execute(array($username))){
-            $stmt = null;
-            header("location: ../error.php?error=db_getprofilefailed");
-            exit();
-        }
-        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $row[0];
+class Profile extends Mapper{
+    protected function parseUserFromMapper(User $user):User{
+        $results = $this->mapgetUserData($user);
+        if(sizeof($results)==0) return new User();
+        else return $results[0];
     }
 }
 ?>

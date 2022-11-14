@@ -1,18 +1,19 @@
 <?php
 class ProfileContr extends Profile{
     private static $instance = null;
-    private $username;
-    private $profile;
+    private User $user;
     private function __construct($username){
-        $this->profile = $this->dbgetprofile($username);
+        $user = new User();
+        $user->setUsername($username);
+        $this->user = $this->parseUserFromMapper($user);
     }
     public static function getInstance($username){
         if(self::$instance==null || self::$instance->username!==$username) 
             self::$instance = new ProfileContr($username);
         return self::$instance;
     }
-    public function getprofile(){
-        return $this->profile;
+    public function getuser():User{
+        return $this->user;
     }
 }
 ?>
