@@ -9,15 +9,12 @@ if(isset($_POST["submit"])){
     $password = $_POST["password"];
     $pwdrepeat = $_POST["pwdrepeat"];
 
-    // Instantiate SignupContr class
-    $user = new User($name,$email,$username,$password);
+    $user = new User();
+    $user->setUser($name,$email,$username,$password);
     $signup = new SignupContr($user,$pwdrepeat);
 
-    // Running error handlers and user
-    $signup->signupUser();
-
-    //Going back to front page
-    header("location: ../login.php?sup=sus");
+    if($signup->signupUser()==true) header("location: ../login.php?sup=sus");
+    else header("location: ../login.php");
     exit();
 }
 ?>

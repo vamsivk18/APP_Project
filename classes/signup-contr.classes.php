@@ -15,9 +15,11 @@ class SignupContr extends SignUp{
         else if($this->passwordtooshort()==true) $_SESSION["signuperror"] = "invalidpassword";
         else if($this->pwdMisMatch() == true) $_SESSION["signuperror"] = "pwdmismatch";
         if(isset($_SESSION["signuperror"])){
-            header("location: ../signup.php");
-            exit();
-        }else $this->dbsetUser($this->user);
+            return false;
+        }else {
+            $this->dbsetUser($this->user);
+            return true;
+        }
         
     }
     private function isemptyInput(){

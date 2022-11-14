@@ -1,13 +1,11 @@
 <?php
 class LoginContr extends Login{
-    private $username;
-    private $password;
-    private $dbusername;
+    private User $user;
+    private User $realuser;
 
-    public function __construct($username,$password){
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbusername = $this->fetchUserName($username);
+    public function __construct(User $user){
+        $this->user = $user;
+        $this->realuser = $this->fetchrealUser($user);
     }
     public function loginUser(){
         if($this->isemptyInput()==true) $_SESSION["loginerror"] = "emptyinput";
@@ -17,20 +15,19 @@ class LoginContr extends Login{
         else return $this->allocateSession();
     }
     private function allocateSession(){
-        $_SESSION["username"] = $this->dbusername;
+        $_SESSION["username"] = $this->realuser->getUsername();
         unset($_SESSION["loginerror"]);
         return true;
     }
     public function isemptyInput(){
-        return empty($this->username) || empty($this->password);
+        return empty($this->user->getusername()) || empty($this->user->getPassword());
     }
     public function userNotFound(){
-        if($this->dbusername=="") return true;
+        if($this->realuser->getUsername()=="") return true;
         return false;
     }
     public function passwordIncorrect(){
-        $dbpassword = $this->fetchPassword($this->username);
-        if(strcmp($dbpassword,$this->password)!==0) return true;
+        if(strcmp($this->realuser->getPassword(),$this->user->getpassword())!==0) return true;
         return false;
     }
 }

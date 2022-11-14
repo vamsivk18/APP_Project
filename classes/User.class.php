@@ -1,10 +1,13 @@
 <?php
 class User{
-    private $name;
-    private $email;
-    private $username;
-    private $password;
-    public function __construct($name,$email,$username,$password)
+    private $name = "";
+    private $email = "";
+    private $username = "";
+    private $password = "";
+    public function __construct()
+    {
+    }
+    public function setUser($name,$email,$username,$password)
     {
         $this->setName($name);
         $this->setemail($email);

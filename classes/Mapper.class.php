@@ -17,11 +17,24 @@ class Mapper extends Dbh{
         $values = array($user->getName(),$user->getEmail(),$user->getUsername(),$user->getPassword());
         $this->mapexecutestmt($stmt,$values);
     }
+    //mapgetuserdata will return array of User objects
     protected function mapgetUserData(User $user) :array{
         $query = 'SELECT * from users where username=? OR email=?';
         $stmt = $this->mapprepare($query);
         $values = array($user->getUsername(),$user->getEmail());
-        return $this->mapexecutestmt($stmt,$values)->fetchAll(PDO::FETCH_ASSOC);
+        $results = $this->mapexecutestmt($stmt,$values)->fetchAll(PDO::FETCH_ASSOC);
+        $arrayresult = array();
+        foreach($results as $row){
+            $user = new User();
+            $user->setUser($row["name"],$row["email"],$row["username"],$row["password"]);
+            array_push($arrayresult,$user);
+        }
+        return $arrayresult;
+    }
+    protected function mapUser(User $userarray):User{
+        $user = new User();
+        $user->setUser($userarray->getName(),$userarray->getEmail(),$userarray->getUsername(),$userarray->getPassword());
+        return $user;
     }
 }
 ?>

@@ -1,5 +1,10 @@
 <?php
-class Login extends Dbh{
+class Login extends Mapper{
+    protected function fetchrealUser(User $user):User{
+        $results = $this->mapgetUserData($user);
+        if(sizeof($results)==0) return new User();
+        else return $results[0];
+    }
     protected function fetchUserName($username){
         $stmt = $this->connect()->prepare("SELECT username from users where username=? OR email=?;");
         if(!$stmt->execute(array($username,$username))){
